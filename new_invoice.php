@@ -82,9 +82,9 @@
 
           <!-- new user button -->
           <div class="row col col-md-12">
-            <div class="col col-md-2 form-group">
+            <!-- <div class="col col-md-2 form-group">
               <button class="btn btn-primary form-control" onclick="document.getElementById('add_new_customer_model').style.display = 'block';">New Customer</button>
-            </div>
+            </div> -->
             <div class="col col-md-1 form-group"></div>
             <div class="col col-md-2 form-group">
               <label class="font-weight-bold" for="customers_contact_number">Contact Number :</label>
