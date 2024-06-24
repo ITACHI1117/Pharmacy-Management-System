@@ -22,7 +22,8 @@
       $quantity = ucwords($_GET["quantity"]);
       $mrp = ucwords($_GET["mrp"]);
       $rate = ucwords($_GET["rate"]);
-      updateMedicineStock($id, $batch_id, $expiry_date, $quantity, $mrp, $rate);
+      $reference_number = ucwords($_GET["reference_number"]);
+      updateMedicineStock($id, $batch_id, $expiry_date, $quantity, $mrp, $rate, $reference_number);
     }
 
     if(isset($_GET["action"]) && $_GET["action"] == "cancel")
@@ -61,17 +62,17 @@
       <td><?php echo $row['QUANTITY']; ?></td>
       <td><?php echo $row['MRP']; ?></td>
       <td><?php echo $row['RATE']; ?></td>
-      <td><?php echo $row['RATE']; ?></td>
-      <td>
+      <td><?php echo $row['REFERENCE_NUMBER']; ?></td>
+      <!-- <td>
         <button href="" class="btn btn-info btn-sm" onclick="editMedicineStock('<?php echo $row['BATCH_ID']; ?>');">
           <i class="fa fa-pencil"></i>
         </button>
-        <!--
+        
         <button class="btn btn-danger btn-sm" onclick="deleteMedicineStock(<?php echo $row['ID']; ?>);">
           <i class="fa fa-trash"></i>
         </button>
-      -->
-      </td>
+     
+      </td> -->
     </tr>
     <?php
   }
@@ -106,7 +107,11 @@ function showEditOptionsRow($seq_no, $row) {
       <code class="text-danger small font-weight-bold float-right" id="rate_error" style="display: none;"></code>
     </td>
     <td>
-      <button href="" class="btn btn-success btn-sm" onclick="updateMedicineStock(<?php echo $row[5]; ?>);">
+      <input type="text" class="form-control" value="<?php echo $row['REFERENCE_NUMBER']; ?>" placeholder="Reference Number" id="reference_number" onkeyup="checkValue(this.value, 'reference_number_error');">
+      <code class="text-danger small font-weight-bold float-right" id="reference_number_error" style="display: none;"></code>
+    </td>
+    <td>
+      <button href="" class="btn btn-success btn-sm" onclick="updateMedicineStock(<?php echo $row[6]; ?>);">
         <i class="fa fa-edit"></i>
       </button>
       <button class="btn btn-danger btn-sm" onclick="cancel();">
@@ -117,9 +122,9 @@ function showEditOptionsRow($seq_no, $row) {
   <?php
 }
 
-function updateMedicineStock($id, $batch_id, $expiry_date, $quantity, $mrp, $rate) {
+function updateMedicineStock($id, $batch_id, $expiry_date, $quantity, $mrp, $rate, $reference_number) {
   require "db_connection.php";
-  $query = "UPDATE medicines_stock SET BATCH_ID = '$batch_id', EXPIRY_DATE = '$expiry_date', QUANTITY = $quantity, MRP = $mrp, RATE = $rate WHERE ID = $id";
+  $query = "UPDATE medicines_stock SET BATCH_ID = '$batch_id', EXPIRY_DATE = '$expiry_date', QUANTITY = $quantity, MRP = $mrp, RATE = $rate, REFERENCE_NUMBER = $reference_number WHERE ID = $id";
   $result = mysqli_query($con, $query);
   if(!empty($result))
     showMedicinesStock("0");

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 22, 2024 at 05:14 PM
+-- Generation Time: Jun 24, 2024 at 10:17 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 7.4.12
 
@@ -118,7 +118,13 @@ INSERT INTO `medicines` (`ID`, `NAME`, `PACKING`, `GENERIC_NAME`, `SUPPLIER_NAME
 (1, 'Nicip Plus', '10TAB', 'Paracetamole', 'BDPL PHARMA', 'REF123456'),
 (4, 'Dolo 650', '15tab', 'paracetamole', 'BDPL PHARMA', 'REF654321'),
 (5, 'Gelusil', '10tab', 'mint fla', 'Desai Pharma', 'REF789012'),
-(7, 'Paracitamol', '10', 'Paractamol', 'John', 'REF345678');
+(16, 'Aspirin', '100', 'Aspirin', 'John', 'REF345978'),
+(18, 'Crosin', '30', 'CrosinNA', 'Kiran Pharma', 'REF124467'),
+(19, 'Lipitor', '40', 'Atorvastatin', 'BDPL PHARMA', 'REF124345'),
+(20, 'Augmentin', '30', 'Amoxicillin/Clavulanate', 'SS Distributors', 'REF124446'),
+(21, 'Zoloft', '10', 'Sertraline', 'Desai Pharma', 'REF124456'),
+(22, 'Ventolin', '68', 'Albuterol', 'Kiran Pharma', 'REF124885'),
+(23, 'Nexium', '66', 'Esomeprazole', 'SS Distributors', 'REF124998');
 
 -- --------------------------------------------------------
 
@@ -133,18 +139,25 @@ CREATE TABLE `medicines_stock` (
   `EXPIRY_DATE` varchar(10) NOT NULL,
   `QUANTITY` int(11) NOT NULL,
   `MRP` double NOT NULL,
-  `RATE` double NOT NULL
+  `RATE` double NOT NULL,
+  `REFERENCE_NUMBER` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_bin;
 
 --
 -- Dumping data for table `medicines_stock`
 --
 
-INSERT INTO `medicines_stock` (`ID`, `NAME`, `BATCH_ID`, `EXPIRY_DATE`, `QUANTITY`, `MRP`, `RATE`) VALUES
-(1, 'Crosin', 'CROS12', '12/34', 2, 2626, 26),
-(2, 'Gelusil', 'G327', '12/42', 0, 15, 12),
-(3, 'Dolo 650', 'DOLO327', '01/23', 3, 30, 24),
-(4, 'Nicip Plus', 'NI325', '05/22', 3, 32.65, 28);
+INSERT INTO `medicines_stock` (`ID`, `NAME`, `BATCH_ID`, `EXPIRY_DATE`, `QUANTITY`, `MRP`, `RATE`, `REFERENCE_NUMBER`) VALUES
+(1, 'Crosin', 'CROS12', '12/34', 2, 2626, 26, 'REF124467'),
+(2, 'Gelusil', 'G327', '12/42', 0, 15, 12, 'REF789012'),
+(3, 'Dolo 650', 'DOLO327', '01/23', 3, 30, 24, 'REF654321'),
+(4, 'Nicip Plus', 'NI325', '05/22', 3, 32.65, 28, 'REF123456'),
+(5, 'Aspirin', 'AS237', '12/40', 20, 20, 15, 'REF345978'),
+(6, 'Lipitor', 'LIP456', '12/21', 27, 30, 15, 'REF124345'),
+(7, 'Augmentin', 'AUG335', '10/25', 30, 33.54, 30, 'REF124446'),
+(8, 'Zoloft', 'ZOL354', '1/20', 14, 33.45, 11, 'REF124456'),
+(9, 'Ventolin', 'VEN122', '12/30', 100, 44.5, 30, 'REF124885'),
+(10, 'Nexium', ' NEX657', '12/24', 300, 43.45, 40, 'REF124998');
 
 -- --------------------------------------------------------
 
@@ -261,13 +274,13 @@ ALTER TABLE `invoices`
 -- AUTO_INCREMENT for table `medicines`
 --
 ALTER TABLE `medicines`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `medicines_stock`
 --
 ALTER TABLE `medicines_stock`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `purchases`

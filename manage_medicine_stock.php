@@ -63,7 +63,7 @@
                     <th style="width: 8%;">M.R.P.</th>
                     <th style="width: 8%;">Rate</th>
                     <th style="width: 8%;">Reference Number</th>
-                    <th style="width: 10%;">Action</th>
+                    <!-- <th style="width: 10%;">Action</th> -->
             			</tr>
             		</thead>
                 <tbody id="medicines_stock_div">
